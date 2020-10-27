@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AppLogicService } from './app-logic.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CreateDialogComponent } from './create-dialog/create-dialog.component';
     MatDialogModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [AppLogicService],
   bootstrap: [AppComponent]

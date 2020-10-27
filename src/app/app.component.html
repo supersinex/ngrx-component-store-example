@@ -3,8 +3,40 @@
     <mat-toolbar>
       <span>NgRx Component-Store Example</span>
     </mat-toolbar>
+    <div class="filter-row">
+      <div class="search-bar">
+        <mat-form-field appearance="outline" color="secondary">
+          <mat-label>Search</mat-label>
+          <input matInput name="searchTerm" [formControl]="searchTerm">
+          <button [@fadeInOut] *ngIf="searchTerm?.value" mat-icon-button (click)="clearSearch()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="sort-dropdown">
+        <mat-form-field appearance="outline">
+          <mat-label>Sort Property</mat-label>
+          <mat-select [formControl]="sortProperty">
+            <mat-option *ngFor="let sortProperty of sortProperties" [value]="sortProperty.value">
+              {{sortProperty.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="sort-direction">
+        <mat-form-field appearance="outline">
+          <mat-label>Sort Direction</mat-label>
+          <mat-select [formControl]="sortDirection">
+            <mat-option *ngFor="let sortDirection of sortDirections" [value]="sortDirection.value">
+              {{sortDirection.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
     <div class="user-cards">
-      <user-card *ngFor="let user of (users$ | async)" [user]="user" (userDeleted)="deleteUser(user)" (openEdit)="editUser(user)"></user-card>
+      <user-card [@fadeOut] *ngFor="let user of (users$ | async)" [user]="user" (userDeleted)="deleteUser(user)"
+        (openEdit)="editUser(user)"></user-card>
     </div>
   </div>
   <button mat-fab class="fab" (click)="add()">

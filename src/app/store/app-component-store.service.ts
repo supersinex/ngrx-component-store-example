@@ -10,18 +10,18 @@ export interface AppComponentState {
   users: User[];
   sortProperty: string;
   searchTerm: string;
+  sortDirection: number;
 }
 
 const DEFAULT_STATE: AppComponentState = {
   users: [],
   sortProperty: 'first_name',
   searchTerm: null,
+  sortDirection: 1
 };
 
 @Injectable()
-export class AppComponentStoreService extends ComponentStore<
-  AppComponentState
-> {
+export class AppComponentStoreService extends ComponentStore<AppComponentState> {
   constructor(private readonly _http: HttpClient) {
     // Since it extends the ComponentStore, we have to call super, and it accepts the default state
     // as a parameter.
@@ -32,16 +32,16 @@ export class AppComponentStoreService extends ComponentStore<
   readonly users$: Observable<User[]> = this.select((state) => {
     let users = [...state.users];
     if (state.searchTerm) {
-      users = users.filter((x) =>
-        [x.email, x.first_name, x.last_name].includes(state.searchTerm)
+      users = users.filter((user) =>
+        user.email.toLowerCase().includes(state.searchTerm) || user.first_name.toLowerCase().includes(state.searchTerm) || user.last_name.toLowerCase().includes(state.searchTerm)
       );
     }
 
     return users.sort((firstUser, secondUser) => {
       if (firstUser[state.sortProperty] < secondUser[state.sortProperty])
-        return -1;
+        return state.sortDirection === 1 ? -1 : 1;
       if (firstUser[state.sortProperty] > secondUser[state.sortProperty])
-        return 1;
+      return state.sortDirection === 1 ? 1 : -1;
       return 0;
     });
   });
@@ -50,6 +50,21 @@ export class AppComponentStoreService extends ComponentStore<
   readonly setUsers = this.updater((state, users: User[]) => ({
     ...state,
     users: users,
+  }));
+
+  readonly setSearchTerm = this.updater((state, searchTerm: string) => ({
+    ...state,
+    searchTerm: searchTerm
+  }));
+
+  readonly setSortProperty = this.updater((state, sortProperty: string) => ({
+    ...state,
+    sortProperty: sortProperty
+  }));
+
+  readonly setSortDirection = this.updater((state, sortDirection: number) => ({
+    ...state,
+    sortDirection: sortDirection
   }));
 
   readonly addUser = this.updater((state, user: User) => {

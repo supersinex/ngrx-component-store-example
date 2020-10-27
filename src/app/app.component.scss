@@ -8,6 +8,7 @@
         flex: 1;
 
         mat-toolbar,
+        .filter-row,
         .user-cards {
             display: flex;
             flex-direction: row;
@@ -16,6 +17,70 @@
         mat-toolbar {
             background-color: #4f3b78;
             color: #eee;
+        }
+
+        .filter-row {
+            padding: 15px 20px 0 20px;
+
+            .search-bar,
+            .sort-dropdown,
+            .sort-direction {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .search-bar {
+                flex: 1;
+
+                button {
+                    color: #fff;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                }
+            }
+
+            .sort-dropdown {
+                flex-basis: 350px;
+                margin-left: 20px;
+            }
+
+            .sort-direction {
+                flex-basis: 200px;
+                margin-left: 20px;
+            }
+
+            ::ng-deep {
+                .mat-form-field-appearance-outline .mat-form-field-outline {
+                    color: white;
+                }
+                mat-form-field {
+                    .mat-hint,
+                    input,
+                    ::placeholder,
+                    .mat-form-field-label,
+                    .mat-select-value-text,
+                    .mat-select-arrow {
+                        color: white;
+                    }
+
+                    .mat-form-field-label {
+                        font-size: 15px;
+                    }
+
+                    .mat-select-value-text {
+                        font-size: 19px;
+                    }
+                }
+
+                input {
+                    font-size: 20px;
+                }
+
+                .mat-input-element {
+                    caret-color: #fff !important;
+                }
+            }
         }
 
         .user-cards {
@@ -46,6 +111,20 @@
 @media screen and (max-width: 1250px) {
     user-card {
         flex-basis: 50%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .filter-row {
+        flex-wrap: wrap;
+    }
+
+    .search-bar,
+    .sort-dropdown,
+    .sort-direction {
+        flex-basis: 100%;
+        flex: 1;
+        margin: 0 !important;
     }
 }
 
