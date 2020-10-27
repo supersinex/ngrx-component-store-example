@@ -1,0 +1,56 @@
+#app {
+    height: 100%;
+
+    .app-main-column {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        mat-toolbar,
+        .user-cards {
+            display: flex;
+            flex-direction: row;
+        }
+
+        mat-toolbar {
+            background-color: #4f3b78;
+            color: #eee;
+        }
+
+        .user-cards {
+            flex-wrap: wrap;
+
+            user-card {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+
+    .fab {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #927fbf;
+        color: #eee;
+    }
+}
+
+@media screen and (min-width: 1251px) {
+    user-card {
+        flex-basis: 25%;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    user-card {
+        flex-basis: 50%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    user-card {
+        flex-basis: 100%;
+    }
+}

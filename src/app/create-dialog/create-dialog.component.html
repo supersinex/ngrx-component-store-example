@@ -1,0 +1,31 @@
+<form [formGroup]="userForm" class="create-form" (ngSubmit)="save()" autocomplete="off">
+    <h1 mat-dialog-title>Create User</h1>
+    <div mat-dialog-content>
+        <div class="row">
+            <div class="column">
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input matInput required name="first_name" formControlName="first_name">
+                </mat-form-field>
+            </div>
+            <div class="column">
+                <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput required name="last_name" formControlName="last_name">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="email">
+                <mat-label>Email</mat-label>
+                <input matInput required name="email" formControlName="email">
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <div class="actions">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button [disabled]="!userForm.valid" mat-button color="primary" type="submit" (click)="save()">Save</button>
+        </div>
+    </div>
+</form>

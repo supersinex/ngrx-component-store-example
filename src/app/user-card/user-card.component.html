@@ -1,0 +1,13 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <img mat-card-avatar src="{{'assets/avatar-' + user?.avatarNumber + '.png'}}">
+        <mat-card-title>{{user?.first_name}} {{user?.last_name}}</mat-card-title>
+        <mat-card-subtitle>{{user?.email}}</mat-card-subtitle>
+        <button class="edit" mat-icon-button (click)="edit()">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button class="delete" mat-icon-button (click)="delete()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-header>
+</mat-card>

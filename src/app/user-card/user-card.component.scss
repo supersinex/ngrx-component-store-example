@@ -1,0 +1,22 @@
+.example-card {
+    margin: 20px;
+    background-color: #eee;
+    position: relative;
+
+    .mat-card-actions, .mat-card-subtitle, .mat-card-content {
+        margin-bottom: 0;
+    }
+
+    button {
+        position: absolute;
+        right: 5px;
+    }
+
+    .edit {
+        top: 0;
+    }
+
+    .delete {
+        top: 30px;
+    }
+}
