@@ -1,4 +1,6 @@
-# ComponentStoreExample
+# NgRx Component Store Example
+
+[Live Demo](https://supersinex.github.io/ngrx-component-store-example/index.html)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
